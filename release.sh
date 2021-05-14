@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=$(awk -F '"' '{if(/VERSIONSTR = /) print $2}' CMakeLists.txt)
+VERSION=$(awk -F '"' '{if(/VERSIONSTR=/) print $2}' CMakeLists.txt)
 VERSION=${VERSION/QCoreApplication::setApplicationVersion(\"}
 VERSION=${VERSION/\");}
 VERSION=$(echo $VERSION | tr -d '\n')
