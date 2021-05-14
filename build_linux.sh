@@ -1,7 +1,10 @@
 #!/bin/sh
 mkdir -p build
+
+cmake -Bbuild -H.
+
 cd build/
 
-qmake PREFIX=/usr ../FFaudioConverter.pro -spec linux-g++ CONFIG+=release
 make
+
 strip -s ffaudioconverter
