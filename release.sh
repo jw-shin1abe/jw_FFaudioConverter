@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=$(awk '{if(/VERSION = /) print $3}' FFaudioConverter.pro)
+VERSION=$(awk -F '"' '{if(/VERSIONSTR = /) print $2}' CMakeLists.txt)
 VERSION=${VERSION/QCoreApplication::setApplicationVersion(\"}
 VERSION=${VERSION/\");}
 VERSION=$(echo $VERSION | tr -d '\n')
@@ -12,7 +12,7 @@ mkdir -p release
 tar -cJf release/FFaudioConverter-$VERSION-src.tar.xz \
     src/ \
     translations/ \
-    FFaudioConverter.pro \
+    CMakeLists.txt \
     build_linux.sh \
     build_win32.bat \
     LICENSE \

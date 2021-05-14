@@ -28,17 +28,19 @@ file(GLOB SRC_FILES
   "src/*.ui"
 )
 
-add_definitions( -DVERSIONSTR="0.29.1" )
+add_definitions( -DVERSIONSTR = "0.29.1" )
 
 if(EXISTS "/.flatpak-info")
-  add_definitions( -DDEFAULT_FFMPEG_BINARY="/app/bin/ffmpeg" )
+  add_definitions( -DDEFAULT_FFMPEG_BINARY = "/app/bin/ffmpeg" )
 else()
   if(WIN32)
-    add_definitions( -DDEFAULT_FFMPEG_BINARY="ffmpeg/bin/ffmpeg.exe" )
+    add_definitions( -DDEFAULT_FFMPEG_BINARY = "ffmpeg/bin/ffmpeg.exe" )
   else()
-    add_definitions( -DDEFAULT_FFMPEG_BINARY="/usr/bin/ffmpeg" )
+    add_definitions( -DDEFAULT_FFMPEG_BINARY = "/usr/bin/ffmpeg" )
   endif()
 endif()
+
+# qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 add_executable(FFaudioConverter
   ${SRC_FILES}
@@ -46,5 +48,3 @@ add_executable(FFaudioConverter
 )
 
 target_link_libraries(FFaudioConverter PRIVATE Qt5::Widgets)
-
-# qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
